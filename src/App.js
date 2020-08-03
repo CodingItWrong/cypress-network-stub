@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
+import xhrPromise from './xhrPromise';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    xhrPromise('https://example.com/large.json', null, null, 'GET')
+      .then(xhr => console.log('large.json', xhr))
+      .catch(error => console.error("couldn't load large.json", error));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
